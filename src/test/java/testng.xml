@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" verbose="1">
+    <!--parameter name="username" value="root" />
+    <parameter name="password" value="pwd" />
+    <parameter name="param" value="param" /-->
+
+    <test verbose="2" preserve-order="true" name="getParam">
+        <parameter name="client_id" value="b38425e7ce9249f4a5f2acad8d8308a3" />
+        <parameter name="response_type" value="code" />
+        <parameter name="redirect_uri" value="json:http://pdmi-test.teambition.net" />
+        <parameter name="state" value="ABCD" />
+        <parameter name="username" value="testcb0528" />
+        <parameter name="password" value="111111" />
+        <parameter name="available" value="0" />
+        <classes>
+            <class name="demo.get_Param"/>
+            <!--class nademo.GetUsertokenoken" /-->
+        </classes>
+    </test>
+
+    <!--test verbose="2" preserve-order="true" name="GetTest">
+        <parameter name="client_id" value="b38425e7ce9249f4a5f2acad8d8308a3" />
+        <parameter name="client_secret" value="fb121321a69549fb8278d6ba20ac0b44" />
+        <classes>
+            <class name="demo.get"/>
+            <class nademo.GetUsertokenoken" />
+        </classes>
+    </test-->
+
+    <!--test name="test2">
+        <packages>
+            <package name="com.ibm.testng.test"></package>
+        </packages>
+    </test-->
+</suite>
