@@ -2,6 +2,7 @@ package CommonApi;
 
 import CommonAPI.EnvInit;
 import CommonApi.ExcelVersion.appToken;
+import CommonApi.ExcelVersion.sign;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -35,7 +36,7 @@ public class apiRequests {
         String requestUrl = EnvInit.requestUrl(urlname, apiName);
 
         // 参数拼接+签名+ accesstoken
-        mapdata.put("sign", CommonApi.sign.sign(mapdata));
+        mapdata.put("sign", sign.sign(mapdata));
         mapdata.put("access_token", appToken.appToken(mapdata));
 
         // 2. map转url：&拼接参数

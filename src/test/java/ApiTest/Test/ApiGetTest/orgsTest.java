@@ -2,15 +2,10 @@ package ApiTest.Test.ApiGetTest;
 
 import CommonAPI.EnvInit;
 import CommonApi.apiRequests;
-import CommonApi.sign;
-import Data.DataproviderClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import requests.GetRequests;
-import tool.MultiData;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 
 /**
