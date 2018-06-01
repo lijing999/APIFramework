@@ -26,6 +26,7 @@ public class ExcelmapTest {
 
         System.out.println("通过Map.entrySet遍历key和value");
         for (int i=0;i<mapdata.length;i++){
+            System.out.println(mapdata[i].length);
             for (int j=0;j<mapdata[i].length;j++){
                 /**
                  * Map.Entry描述在一个Map中的一个元素（键/值对）。

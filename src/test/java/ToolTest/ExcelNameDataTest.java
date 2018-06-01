@@ -2,7 +2,6 @@ package ToolTest;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import requests.GetRequest;
 import tool.ExcelNameData;
 
 import java.util.HashMap;

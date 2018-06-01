@@ -120,25 +120,126 @@ public class MapToUrl_get {
         String file="E:\\test.xlsx";
         //String file="E:\\login.xlsx";
         HashMap<String, String>[][] mapdata = excelCase.testData(file, "pupdata");
+        System.out.println(mapdata.length);
 
         StringBuffer[] sb = new StringBuffer[mapdata.length];
+
         String[] requestUrl=new String[mapdata.length];
 
 
         for (int i=0;i<mapdata.length;i++){
+            StringBuffer[] sa = new StringBuffer[mapdata[i].length];
             for (int j=0;j<mapdata[i].length;j++){
                 for (Map.Entry<String, String> entry:mapdata[i][j].entrySet()) {
-                    System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-                    sb[i].append(entry.getKey() + "=" + entry.getValue());
+                   // System.out.println("key= " + entry.getKey() + " "+ "value= " + entry.getValue());
+                    System.out.println( entry.getKey() + "= "+ entry.getValue());
+                    /**
+                     * StringBuffer[] stringBuffers = new StringBuffer[10];
+                        这只是声明了 10个 StringBuffer 的变量 并没有创建对象
+                         stringBuffers[i] = new StringBuffer(); 这是给变量创建对象
+                     */
+                    sb[i] = new StringBuffer();
+                    sb[i].append(entry.getKey() + "=" + entry.getValue()).toString();
                     sb[i].append("&");
-                    requestUrl[i]=sb[i].toString();
-                    if ( requestUrl[i].endsWith("&")) {
-                        requestUrl[i] = StringUtils.substringBeforeLast( requestUrl[i], "&");
-                    }
-                    System.out.println("\n"+ "第" + i + "组请求参数为："+ requestUrl[i]);
+                    System.out.println(sb[i].toString());
 
                 }
+
+
+
+                    /*requestUrl[i]=new String();
+                   *//* requestUrl[i]=sb[i].toString();
+                    System.out.println( requestUrl[i]);*/
             }
+           /* requestUrl[i]=sb[i].toString();
+            if (requestUrl[i].endsWith("&")) {
+                requestUrl[i] = StringUtils.substringBeforeLast( requestUrl[i], "&");
+            }
+            System.out.println("\n"+ "第" + i + "组请求参数为："+ requestUrl[i]);*/
+
+
         }
+    }
+
+    @Test
+    public void tempTest(){
+       /* String [] s=new String[]{"password=admin1234&","username=admin&"};
+        StringBuffer sb=new StringBuffer();
+        for (int i=0;i<2;i++){
+
+            sb.append(s[i]);
+        }
+        System.out.println(sb.toString());
+
+*/
+        ExcelNameData_map excelCase=new ExcelNameData_map();
+        String file="E:\\test.xlsx";
+        //String file="E:\\login.xlsx";
+        HashMap<String, String>[][] mapdata = excelCase.testData(file, "pupdata");
+        System.out.println(mapdata.length);
+
+        StringBuffer[] sb = new StringBuffer[mapdata.length];
+        StringBuffer[] sb1 = new StringBuffer[mapdata.length];
+
+        String[] param=new String[mapdata.length];
+
+        for (int i=0;i<mapdata.length;i++){
+            StringBuffer[] sa = new StringBuffer[mapdata[i].length];
+            System.out.println(mapdata[i].length);
+
+            for (int j=0;j<mapdata[i].length;j++){
+                System.out.println(mapdata[i][j].size());
+
+                    for (Map.Entry<String, String> entry:mapdata[i][j].entrySet()) {
+                        // System.out.println("key= " + entry.getKey() + " "+ "value= " + entry.getValue());
+
+                        System.out.println( entry.getKey() + "= "+ entry.getValue());
+                        /**
+                         * StringBuffer[] stringBuffers = new StringBuffer[10];
+                         这只是声明了 10个 StringBuffer 的变量 并没有创建对象
+                         stringBuffers[i] = new StringBuffer(); 这是给变量创建对象
+                         */
+                        sb[i] = new StringBuffer();
+                        sb[i].append(entry.getKey() + "=" + entry.getValue());
+                        sb[i].append("&");
+                        System.out.println("sb[param_" + i + "]:" + sb[i]);
+
+                        sb1[i] = new StringBuffer();
+                       /* for (int k=0;k<(mapdata[i][j].size());k++){
+                            param[k]=sb[i].toString();
+
+                            sb1[k].append(param[k]);
+
+                        }*/
+                        System.out.println(sb1[i]);
+
+
+                      //  for (int k=0;k<(mapdata[i][j].size());k++){
+                        /*sb1[k] = new StringBuffer();
+                        sb1[k].append(param[i]);
+                        System.out.println("sb1[" +k +"]:" + sb1[k].toString());*/
+
+
+                        }
+
+                }
+
+
+
+
+
+
+                  /*  requestUrl[i]=new String();
+                    requestUrl[i]=sb[i].toString();
+                    System.out.println( requestUrl[i]);*/
+            }
+           /* requestUrl[i]=sb[i].toString();
+            if (requestUrl[i].endsWith("&")) {
+                requestUrl[i] = StringUtils.substringBeforeLast( requestUrl[i], "&");
+            }
+            System.out.println("\n"+ "第" + i + "组请求参数为："+ requestUrl[i]);*/
+
+
+
     }
 }
