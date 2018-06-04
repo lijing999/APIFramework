@@ -1,10 +1,8 @@
 package CommonAPI;
 
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import tool.EnvPropData;
 import tool.ExcelNameData;
-import tool.ObjectToMap;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,7 +34,17 @@ public class EnvInit  {
         return maps;
     }
 
+    //从 E:\AuthData.properties 中获取参数
 
+    public static HashMap<String, String> getAuthData() throws Exception {
+        Properties properties=EnvPropData.getProperties("E:\\AuthData.properties");
+        String client_id=properties.getProperty("client_id");
+        String client_secret=properties.getProperty("client_secret");
+        HashMap<String, String> authdatas = new HashMap<String, String>();
+        authdatas.put("client_id",client_id);
+        authdatas.put("client_secret",client_secret);
+        return authdatas;
+    }
 
 
 
