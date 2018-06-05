@@ -1,4 +1,4 @@
-package ApiTest.BeforeTest;
+package ApiTest.usertokenTest.BeforeTest;
 
 import CommonAPI.EnvInit;
 import com.alibaba.fastjson.JSONObject;
@@ -13,25 +13,22 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * Created by lijing on 2018/6/1.
+ * Created by lijing on 2018/6/5.
+ * 拼接参数：excel中接口参数+签名+access_token
  */
-public class apptokenGetPrep {
+public class usertokenGetPrep {
     public static CloseableHttpClient httpclient = null;
 
-    public static JSONObject getRequests(String urlname, String apiName, HashMap<String, String> mapdata, String sign) throws IOException {
+    public static JSONObject getRequests(String urlname, String apiName, HashMap<String, String> mapdata, String sign, String access_token) throws IOException {
         httpclient = HttpClients.createDefault();
 
         // 1. 获取请求地址参数
 
-        /*Properties Prop= EnvPropData.getProperties("E:\\env.properties");
-        String requestUrl=Prop.getProperty(urlname);
-        requestUrl=requestUrl+apiName+"?";
-        System.out.print("requestUrl:"+requestUrl);*/
-
-
         String requestUrl = EnvInit.requestUrl(urlname, apiName);
 
         // 参数拼接+签名+ accesstoken
+        mapdata.put("sign",sign);
+        mapdata.put("access_token",access_token);
 
 
         // 2. map转url：&拼接参数
@@ -39,6 +36,7 @@ public class apptokenGetPrep {
 
         //3. 请求地址+ 参数拼接
         String GetUrl = requestUrl + Parameters;
+        System.out.println("GetUrl:"+ GetUrl);
 
 
         // 3. 发送get请求

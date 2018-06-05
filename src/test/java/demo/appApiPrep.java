@@ -1,8 +1,6 @@
-package CommonApi;
+package demo;
 
-import ApiTest.apptokenTest.BeforeTest.appSign;
 import CommonAPI.EnvInit;
-import CommonApi.ExcelVersion.appToken;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -11,17 +9,19 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import tool.MapToUrl;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
+ * 未完成...........
  * Created by lijing on 2018/6/1.
- * 应用token访问api接口前的预置条件
- * 应用token访问api时，需要拼接应用access_token参数和sign参数
+ * 应用token访问前的预置条件：
+ * 1.
  */
-public class apiRequests {
+public class appApiPrep {
     public static CloseableHttpClient httpclient = null;
 
-    public static JSONObject getRequests(String urlname, String apiName, HashMap<String, String> mapdata) throws Exception {
+    public static JSONObject getRequests(String urlname, String apiName, HashMap<String, String> mapdata, String sign) throws IOException {
         httpclient = HttpClients.createDefault();
 
         // 1. 获取请求地址参数
@@ -35,8 +35,7 @@ public class apiRequests {
         String requestUrl = EnvInit.requestUrl(urlname, apiName);
 
         // 参数拼接+签名+ accesstoken
-        mapdata.put("sign", appSign.getSign(mapdata));
-        mapdata.put("access_token", appToken.appToken(mapdata));
+
 
         // 2. map转url：&拼接参数
         String Parameters = MapToUrl.mapTourl(mapdata);

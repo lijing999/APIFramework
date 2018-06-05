@@ -1,4 +1,4 @@
-package ApiTest.BeforeTest;
+package ApiTest.apptokenTest.BeforeTest;
 
 import CommonAPI.EnvInit;
 import com.alibaba.fastjson.JSONObject;
@@ -14,26 +14,21 @@ import java.util.HashMap;
 
 /**
  * Created by lijing on 2018/6/1.
- * 应用token访问前的预置条件：
- * 1.
+ * apptoken访问 api接口（get链接拼接）：url + sign + access_token + orgs参数
  */
-public class appApiPrep {
+public class apptokenGetPrep {
     public static CloseableHttpClient httpclient = null;
 
-    public static JSONObject getRequests(String urlname, String apiName, HashMap<String, String> mapdata, String sign) throws IOException {
+    public static JSONObject getRequests(String urlname, String apiName, HashMap<String, String> mapdata, String sign,String access_token) throws IOException {
         httpclient = HttpClients.createDefault();
 
         // 1. 获取请求地址参数
 
-        /*Properties Prop= EnvPropData.getProperties("E:\\env.properties");
-        String requestUrl=Prop.getProperty(urlname);
-        requestUrl=requestUrl+apiName+"?";
-        System.out.print("requestUrl:"+requestUrl);*/
-
-
-        String requestUrl = EnvInit.requestUrl(urlname, apiName);
+       String requestUrl = EnvInit.requestUrl(urlname, apiName);
 
         // 参数拼接+签名+ accesstoken
+        mapdata.put("sign",sign);
+        mapdata.put("access_token",access_token);
 
 
         // 2. map转url：&拼接参数
@@ -41,6 +36,7 @@ public class appApiPrep {
 
         //3. 请求地址+ 参数拼接
         String GetUrl = requestUrl + Parameters;
+        System.out.println("GetUrl:"+ GetUrl);
 
 
         // 3. 发送get请求

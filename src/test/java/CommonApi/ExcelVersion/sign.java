@@ -1,7 +1,6 @@
 package CommonApi.ExcelVersion;
 
 import CommonAPI.EnvInit;
-import CommonApi.ExcelVersion.appToken;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
