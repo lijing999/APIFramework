@@ -32,12 +32,6 @@ public class GetRequests {
 
         // 1. 获取请求地址参数
 
-        /*Properties Prop= EnvPropData.getProperties("E:\\env.properties");
-        String requestUrl=Prop.getProperty(urlname);
-        requestUrl=requestUrl+apiName+"?";
-        System.out.print("requestUrl:"+requestUrl);*/
-
-
         String requestUrl=EnvInit.requestUrl(urlname,apiName);
 
         // 2. map转url：&拼接参数
@@ -52,7 +46,7 @@ public class GetRequests {
         HttpGet httpGet=new HttpGet(GetUrl);
         CloseableHttpResponse res = httpclient.execute(httpGet);
         String resBody=EntityUtils.toString(res.getEntity());
-        System.out.println("\n"+"Response:"+"\n"+resBody);
+        //System.out.println("\n"+"Response:"+"\n"+resBody);
 
 
         //4. 接口响应转json格式
