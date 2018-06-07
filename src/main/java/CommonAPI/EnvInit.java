@@ -3,6 +3,7 @@ package CommonAPI;
 import org.apache.http.impl.client.CloseableHttpClient;
 import tool.EnvPropData;
 import tool.ExcelNameData;
+import tool.strReplacement;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,9 +25,22 @@ public class EnvInit  {
     public static String  requestUrl(String urlname,String apiName) throws IOException {
         Properties Prop= EnvPropData.getProperties("E:\\env.properties");
         String requestUrl=Prop.getProperty(urlname);
-        requestUrl=requestUrl+apiName+"?";
-        System.out.print("requestUrl:"+requestUrl);
-        return requestUrl;
+
+        //如果apiName中包含"_"，把空格转换为/
+        String replacedapiName="";
+        if (apiName.contains("_")){
+            replacedapiName= strReplacement.strReplace(apiName);
+            System.out.println("\n"+"replacedapiName="+replacedapiName);
+            requestUrl=requestUrl+replacedapiName+"?";
+            System.out.print("requestUrl:"+requestUrl);
+            return requestUrl;
+        }else {
+            requestUrl=requestUrl+apiName+"?";
+            System.out.print("requestUrl:"+requestUrl);
+            return requestUrl;
+        }
+
+
     }
 
     // pup-asserver : 从 E:\AuthData.properties 中获取apptoken接口参数

@@ -10,7 +10,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import tool.EnvPropData;
 import tool.ExcelNameData;
-import tool.ExcelNameData_map;
+import demo.ExcelNameData_map;
 
 import java.io.IOException;
 import java.util.*;

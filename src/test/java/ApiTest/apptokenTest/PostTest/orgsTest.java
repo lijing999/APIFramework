@@ -1,5 +1,6 @@
 package ApiTest.apptokenTest.PostTest;
 
+import ApiTest.apptokenTest.AfterTest.ResAssert;
 import ApiTest.apptokenTest.BeforeTest.apptokenPostPrep;
 import ApiTest.usertokenTest.BeforeTest.accessToken;
 import ApiTest.usertokenTest.BeforeTest.userSign;
@@ -28,7 +29,12 @@ public class orgsTest {
         //获取apptoken
         String access_token= accessToken.getUsertoken();
         //发送post请求
-        apptokenPostPrep.postRequestsToJson("APIurl","orgs",data,sign,access_token);
+        JSONObject res=apptokenPostPrep.postRequestsToJson("APIurl","orgs",data,sign,access_token);
+
+        //结果校验
+        String resultcode=res.getString("result");
+        System.out.println("result is " + resultcode );
+        ResAssert.Result(resultcode);
     }
 
 }

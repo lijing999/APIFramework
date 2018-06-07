@@ -1,10 +1,12 @@
 package ApiTest.usertokenTest.PostTest;
 
+import ApiTest.apptokenTest.AfterTest.ResAssert;
 import ApiTest.apptokenTest.BeforeTest.apptokenPostPrep;
 import ApiTest.usertokenTest.BeforeTest.accessToken;
 import ApiTest.usertokenTest.BeforeTest.userSign;
 import ApiTest.usertokenTest.BeforeTest.usertokenPostPrep;
 import CommonAPI.EnvInit;
+import com.alibaba.fastjson.JSONObject;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,13 +24,17 @@ public class orgsTest {
         }
 
         @Test(dataProvider = "testData")
-        public void orgTestPost(HashMap<String, String> data) throws Exception {
+        public void orgsTestPost(HashMap<String, String> data) throws Exception {
             //签名
             String sign= userSign.userSign(data);
             //获取apptoken
             String access_token= accessToken.getUsertoken();
             //发送post请求
-            usertokenPostPrep.postRequestsToJson("APIurl","orgs",data,sign,access_token);
+            JSONObject res= usertokenPostPrep.postRequestsToJson("APIurl","orgs",data,sign,access_token);
+            //结果校验
+            String resultcode=res.getString("result");
+            System.out.println("result is " + resultcode );
+            ResAssert.Result(resultcode);
         }
 
 

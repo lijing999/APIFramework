@@ -3,22 +3,21 @@ package ApiTest.apptokenTest.GetTest;
 import ApiTest.apptokenTest.AfterTest.ResAssert;
 import ApiTest.apptokenTest.BeforeTest.appSign;
 import ApiTest.apptokenTest.BeforeTest.apptoken;
+import CommonAPI.EnvInit;
 import com.alibaba.fastjson.JSONObject;
 import demo.apptokenGetPrep;
-import CommonAPI.EnvInit;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 
 /**
- * Created by lijing on 2018/6/1.
+ * Created by lijing on 2018/6/6.
  */
-public class orgsTest {
-
+public class parttime_depts {
     @DataProvider(name="testData")
     public Object[][] data() throws Exception {
-        Object[][] testdata= EnvInit.EnvInitTest("E:\\API.xlsx","orgs");
+        Object[][] testdata= EnvInit.EnvInitTest("E:\\API.xlsx","parttime_depts");
         return testdata;
     }
 
@@ -26,23 +25,22 @@ public class orgsTest {
 
 
     @Test(dataProvider = "testData")
-    public void orgsTest(HashMap<String, String> data) throws Exception {
+    public void parttime_deptsTest(HashMap<String, String> data) throws Exception {
         for (String key : data.keySet()) {
             System.out.println("key= "+ key + " and value= " + data.get(key));
 
         }
+
         //签名
         String sign= appSign.getSign(data);
         //获取apptoken
         String access_token= apptoken.getApptoken();
         //发送get请求
-        JSONObject res=apptokenGetPrep.getRequests("APIurl","orgs",data,sign,access_token);
+        JSONObject res= apptokenGetPrep.getRequests("APIurl","parttime_depts",data,sign,access_token);
 
         //结果校验
         String resultcode=res.getString("result");
         System.out.println("result is " + resultcode );
         ResAssert.Result(resultcode);
-
     }
-
 }

@@ -20,6 +20,9 @@ import java.util.Map;
 
 /**
  * Created by lijing on 2018/6/4.
+ * 拼接接口请求地址：统一url+ apiname（sheetname)
+ * 从excel中读取接口请求参数（map 转 list，post请求发送的参数为list类型）
+ * 发送post请求：接口地址+list参数
  */
 public class PostReuqests {
     public static CloseableHttpClient httpclient=null;
