@@ -9,6 +9,7 @@ package tool;
 
 /**
  * Created by lijing on 2018/5/17.
+ * 读取.properties中的数据
  */
 public class EnvPropData {
     public static Properties getProperties(String filepath) throws FileNotFoundException, IOException {

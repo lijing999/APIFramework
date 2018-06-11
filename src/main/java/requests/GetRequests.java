@@ -31,7 +31,6 @@ public class GetRequests {
         httpclient= HttpClients.createDefault();
 
         // 1. 获取请求地址参数
-
         String requestUrl=EnvInit.requestUrl(urlname,apiName);
 
         // 2. map转url：&拼接参数

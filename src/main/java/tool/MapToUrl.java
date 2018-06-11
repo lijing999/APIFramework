@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * Created by lijing on 2018/6/1.
+ * 存在map中的参数，转换为&拼接的参数，去掉最后的&符号
  */
 public class MapToUrl {
 
