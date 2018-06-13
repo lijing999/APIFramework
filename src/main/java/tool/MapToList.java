@@ -7,7 +7,7 @@ import java.util.*;
 
 /**
  * Created by lijing on 2018/6/4.
- * post请求参数，转为list类型
+ * post请求参数，map参数转为list类型
  */
 public class MapToList {
 
