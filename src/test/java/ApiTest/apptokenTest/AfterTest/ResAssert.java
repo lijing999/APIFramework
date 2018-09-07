@@ -6,8 +6,7 @@ import org.testng.Assert;
 
 /**
  * Created by lijing on 2018/6/6.
- * 结果校验：这儿只校验了返回的结果码
- * 还可以扩充：返回的每个参数和相应数据库表的字段值比对
+ *
  */
 public class ResAssert {
 
