@@ -15,6 +15,7 @@ import java.util.Properties;
  * API.xlsx中：获取api接口请求参数，存放到map[][]对象中
  * env.properties中：获取api接口请求地址 （url+apiname)
  */
+
 public class EnvInit  {
     public static CloseableHttpClient httpclient = null;
     //public static String apiName = "appToken";
@@ -26,7 +27,7 @@ public class EnvInit  {
         Properties Prop= EnvPropData.getProperties("E:\\env.properties");
         String requestUrl=Prop.getProperty(urlname);
 
-        //如果apiName中包含"_"，把空格转换为/
+        //如果apiName中包含"_"，把"_"转换为/
         String replacedapiName="";
         if (apiName.contains("_")){
             replacedapiName= strReplacement.strReplace(apiName);
@@ -39,7 +40,6 @@ public class EnvInit  {
             System.out.print("requestUrl:"+requestUrl);
             return requestUrl;
         }
-
 
     }
 
