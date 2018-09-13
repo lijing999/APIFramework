@@ -58,16 +58,62 @@ public class JsonHandle {
         return isExitKey;
     }
 
-  //json响应结果中是否存在某个key-value键值对
+    //json响应结果中是否存在某个key值
+    public static boolean checkIsExitTheKey(JSONObject ResJson, String theKey) {
+        //JSONObject jsonObj = JSON.parseObject(abc);
+        boolean isExitTheValue = false;
+        for (Map.Entry<String, Object> entry : ResJson.entrySet()) {
+            if ("JSONArray".equals(entry.getValue().getClass().getSimpleName())) {
+                JSONArray jsonArray = ResJson.parseArray(String.valueOf(entry.getValue()));
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JsonHandle.checkIsExitTheKey((JSONObject) jsonArray.get(i), theKey);
+                    System.out.println("JSONArray:" + "\n" +(JSONObject) jsonArray.get(i));
+                }
+            } else if ("JSONObject".equals(entry.getValue().getClass().getSimpleName())) {
+                JsonHandle.checkIsExitTheKey((JSONObject) entry.getValue(), theKey);
+                System.out.println("JSONObject:" + "\n"+(JSONObject) entry.getValue());
+            } else {
+                continue;
+            }
+        }
+
+            return isExitTheValue;
+        }
+
+    //json响应结果中是否存在某个key值
+    public static boolean checkIsExitTheKey1(JSONObject ResJson, String theKey) {
+        //JSONObject jsonObj = JSON.parseObject(abc);
+        boolean isExitTheValue = false;
+        for (Map.Entry<String, Object> entry : ResJson.entrySet()) {
+            if ("JSONArray".equals(entry.getValue().getClass().getSimpleName())) {
+                JSONArray jsonArray = ResJson.parseArray(String.valueOf(entry.getValue()));
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    if (jsonArray.get(i)==theKey){
+                        System.out.println("JSONArray:" + "\n" +(JSONObject) jsonArray.get(i));
+                        isExitTheValue=true;
+                    }else {
+                        isExitTheValue=false;
+                    }
+                    JsonHandle.checkIsExitTheKey1((JSONObject) jsonArray.get(i), theKey);
+                }
+            } else if ("JSONObject".equals(entry.getValue().getClass().getSimpleName())) {
+                JsonHandle.checkIsExitTheKey1((JSONObject) entry.getValue(), theKey);
+                System.out.println("JSONObject:" + "\n"+(JSONObject) entry.getValue());
+            } else {
+                continue;
+            }
+        }
+
+        return isExitTheValue;
+    }
+
+
+    //json响应结果中是否存在某个key-value键值对
   public static boolean checkIsExitTheValue(JSONObject ResJson, String theKey,String expectValue) {
       //JSONObject jsonObj = JSON.parseObject(abc);
       boolean isExitTheValue = false;
       for (Map.Entry<String, Object> entry : ResJson.entrySet()) {
-          if (entry.getKey().equals(theKey)) {
-              if (expectValue.equals(entry.getValue().toString())) {
-                 isExitTheValue = true;
-              }
-          } else {
+          if (entry.getKey().equals(theKey)){
               if ("JSONArray".equals(entry.getValue().getClass().getSimpleName())) {
                   JSONArray jsonArray = ResJson.parseArray(String.valueOf(entry.getValue()));
                   for (int i = 0; i < jsonArray.size(); i++) {
