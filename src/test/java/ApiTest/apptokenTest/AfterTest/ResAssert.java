@@ -33,6 +33,30 @@ public class ResAssert {
         return Result;
     }
 
+    public static boolean ResultCheckIsExitTheKey(JSONObject resJson,String Expectkey){
+
+        boolean Result=false;
+        String result=resJson.getString("result"); //获取返回结果码
+        System.out.println("resultcode is "+ result);
+        if(result.equals("200")) {
+            //遍历并打印所有的返回结果数据
+            JsonHandle.getJson(resJson);
+            if(JsonHandle.checkIsExitTheKey(resJson,Expectkey)==true){
+                System.out.print(Expectkey + " is checked exited.");
+                Result=true;
+            }else {
+                System.out.print(Expectkey + " is not checked exited.");
+                Result=false;
+            }
+
+        } else {
+            System.out.print("结果码返回错误。"+ "result is " + result);
+            Result = false;
+        }
+
+        return Result;
+    }
+
     public static boolean Result(String resultcode){
         boolean Result=false;
         if(resultcode.equals("200")){
@@ -44,7 +68,6 @@ public class ResAssert {
         }
         return Result;
     }
-
 
 
 
